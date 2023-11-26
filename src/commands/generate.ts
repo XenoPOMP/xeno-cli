@@ -1,7 +1,11 @@
 import { Args, Command } from '@oclif/core';
-import * as clc from 'cli-color';
-import cwd from '../utils/cwd';
+import { existsSync } from 'fs';
+import * as path from 'path';
 import appSource from '../utils/appSource';
+import * as clc from 'cli-color';
+import { CLIError } from '@oclif/core/lib/errors';
+import generate from '../utils/generate';
+import cwd from '../utils/cwd';
 
 export default class Generate extends Command {
 	static description = 'generates code files';
@@ -25,9 +29,18 @@ export default class Generate extends Command {
 	};
 
 	public async run(): Promise<void> {
-		console.log(
-			`Running generation script from ${clc.bold(clc.green(cwd()))}\n` +
-				`Script source dir ${clc.bold.yellow(appSource())}`,
-		);
+		const { args } = await this.parse(Generate);
+
+		switch (args.entityType) {
+			case 'prettier': {
+				await generate({
+					name: '.prettierrc',
+					sourcePath: path.join(appSource(), 'res'),
+					outputPath: path.join(cwd()),
+				});
+
+				break;
+			}
+		}
 	}
 }
