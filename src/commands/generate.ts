@@ -1,10 +1,9 @@
-import { Args, Command, Flags, ux } from '@oclif/core';
-import WorkaroundManager from '../utils/WorkaroundManager';
+import { Args, Command } from '@oclif/core';
 import * as clc from 'cli-color';
+import cwd from '../utils/cwd';
+import appSource from '../utils/appSource';
 
 export default class Generate extends Command {
-	private workaroundManager = new WorkaroundManager();
-
 	static description = 'generates code files';
 
 	static aliases = ['generate', 'g', 'gen'];
@@ -28,12 +27,8 @@ export default class Generate extends Command {
 
 	public async run(): Promise<void> {
 		console.log(
-			`Running generation script from ${clc.bold(
-				clc.green(this.workaroundManager.cwd()),
-			)}\n` +
-				`Script source dir ${clc.bold.yellow(
-					this.workaroundManager.appSource(),
-				)}`,
+			`Running generation script from ${clc.bold(clc.green(cwd()))}\n` +
+				`Script source dir ${clc.bold.yellow(appSource())}`,
 		);
 	}
 }
