@@ -2,7 +2,7 @@ import { existsSync } from 'fs';
 import * as path from 'path';
 import * as clc from 'cli-color';
 import { inquirer } from './inquirer';
-import { deleteFile } from './deletion';
+import { deleteFileSync } from './deletion';
 
 interface GenerationOptions {
 	name: string;
@@ -15,7 +15,10 @@ const generate = async ({
 	sourcePath,
 	outputPath,
 }: GenerationOptions) => {
-	if (existsSync(path.join(outputPath, name))) {
+	const sourceFileName = path.join(sourcePath, name);
+	const outputFileName = path.join(outputPath, name);
+
+	if (existsSync(outputFileName)) {
 		console.log(`File ${clc.bold.bgMagenta(name)} already exists.`);
 
 		const override = await inquirer.confirm({
@@ -28,7 +31,7 @@ const generate = async ({
 			process.exit(0);
 		}
 
-		deleteFile(path.join(outputPath, name));
+		deleteFileSync(outputFileName);
 	}
 };
 

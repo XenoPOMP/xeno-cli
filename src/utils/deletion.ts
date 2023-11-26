@@ -5,7 +5,7 @@ import { existsSync, PathLike, unlinkSync } from 'fs';
  *
  * @param path
  */
-const deleteFile = (path: PathLike) => {
+const deleteFileSync = (path: PathLike) => {
 	if (!existsSync(path)) {
 		return;
 	}
@@ -13,8 +13,8 @@ const deleteFile = (path: PathLike) => {
 	unlinkSync(path);
 };
 
-const deleteDir = (path: PathLike) => {
-	return deleteFile(path);
+const deleteDirSync = (path: PathLike) => {
+	return deleteFileSync(path);
 };
 
-export { deleteFile, deleteDir };
+export { deleteFileSync, deleteDirSync };
