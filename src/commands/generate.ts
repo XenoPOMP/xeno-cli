@@ -1,4 +1,4 @@
-import { Args, Command } from '@oclif/core';
+import { Args, Command, Flags } from '@oclif/core';
 import { existsSync } from 'fs';
 import * as path from 'path';
 import appSource from '../utils/appSource';
@@ -19,6 +19,12 @@ export default class Generate extends Command {
 		// name: Flags.string({ char: 'n', description: 'name to print' }),'
 		// flag with no value (-f, --force)
 		// force: Flags.boolean({ char: 'f' }),
+
+		modify: Flags.boolean({
+			char: 'm',
+			description: 'enable force entity modification.',
+			required: false,
+		}),
 	};
 
 	static args = {
@@ -29,7 +35,7 @@ export default class Generate extends Command {
 	};
 
 	public async run(): Promise<void> {
-		const { args } = await this.parse(Generate);
+		const { args, flags } = await this.parse(Generate);
 
 		switch (args.entityType) {
 			case 'prettier': {
@@ -37,6 +43,7 @@ export default class Generate extends Command {
 					name: '.prettierrc',
 					sourcePath: path.join(appSource(), 'res'),
 					outputPath: path.join(cwd()),
+					modification: flags.modify ? {} : undefined,
 				});
 
 				break;
