@@ -4,7 +4,7 @@
   "description": "Simple CLI template. Powered by oclif framework.",
   "author": "XenoPOMP",
   "bin": {
-    "oclif-template": "./bin/run"
+    "xeno": "./bin/run"
   },
   "homepage": "https://github.com/XenoPOMP/oclif-template",
   "license": "MIT",
@@ -41,8 +41,8 @@
     "typescript": "^5.0.4"
   },
   "oclif": {
-    "bin": "oclif-template",
-    "dirname": "oclif-template",
+    "bin": "xeno",
+    "dirname": "xeno",
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",
