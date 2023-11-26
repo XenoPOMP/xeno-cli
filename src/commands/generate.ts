@@ -18,7 +18,6 @@ export default class Generate extends Command {
 	};
 
 	static args = {
-		// file: Args.string({ description: 'file to read' }),
 		entityType: Args.string({
 			required: true,
 			options: ['prettier'],

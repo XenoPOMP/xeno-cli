@@ -1,10 +1,10 @@
-import { path } from 'app-root-path';
+import * as path from 'path';
 
 /**
- * Returns directory of script invocation.
+ * Returns source directory of lib.
  */
 const appSource = (): string => {
-	return path;
+	return path.join(path.dirname(require.main?.filename ?? ''), '../');
 };
 
 export default appSource;

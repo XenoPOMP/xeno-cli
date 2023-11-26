@@ -1,5 +1,5 @@
 /**
- * Returns current working directory.
+ * Returns directory of script invocation.
  */
 const cwd = (): string => {
 	return process.cwd();
