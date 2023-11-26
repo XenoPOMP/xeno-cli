@@ -1,4 +1,4 @@
-import { existsSync } from 'fs';
+import { existsSync, copyFileSync } from 'fs';
 import * as path from 'path';
 import * as clc from 'cli-color';
 import { inquirer } from './inquirer';
@@ -32,6 +32,8 @@ const generate = async ({
 		}
 
 		deleteFileSync(outputFileName);
+
+		copyFileSync(sourceFileName, outputFileName);
 	}
 };
 
