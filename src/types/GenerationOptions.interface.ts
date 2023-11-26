@@ -1,3 +1,5 @@
+import { ModificationSlot } from './ModificationSlot';
+
 export interface GenerationOptions {
 	/** Name of target file. */
 	name: string;
@@ -8,5 +10,5 @@ export interface GenerationOptions {
 	outputPath: string;
 
 	/** If _defined_, will **establish** rules of modification. */
-	modification?: {};
+	modification?: Array<ModificationSlot>;
 }

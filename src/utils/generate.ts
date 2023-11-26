@@ -19,7 +19,12 @@ const generate = async ({
 	sourcePath,
 	outputPath,
 	modification,
-}: GenerationOptions) => {
+	modify,
+}: GenerationOptions & {
+	modify?: boolean;
+}) => {
+	const FILE_CHANGE_DISABLED = true;
+
 	const sourceFileName = path.join(sourcePath, name);
 	const outputFileName = path.join(outputPath, name);
 
@@ -33,17 +38,29 @@ const generate = async ({
 
 		if (!override) {
 			console.log(`${clc.red('File generation canceled.')}`);
-
-			process.exit(0);
+			return;
 		}
 
-		// deleteFileSync(outputFileName);
+		if (!FILE_CHANGE_DISABLED) {
+			deleteFileSync(outputFileName);
+		}
 	}
 
-	// copyFileSync(sourceFileName, outputFileName);
+	if (!FILE_CHANGE_DISABLED) {
+		copyFileSync(sourceFileName, outputFileName);
+	}
 
 	// Do not emit modification check if it is not defined.
 	if (isUndefined(modification)) {
+		// Check if modify flag is set.
+		if (modify) {
+			console.log(
+				`${clc.bgCyan(
+					`This item has not ${clc.italic('any modification rule.')}`,
+				)}`,
+			);
+		}
+
 		return;
 	}
 };

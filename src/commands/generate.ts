@@ -1,11 +1,9 @@
 import { Args, Command, Flags } from '@oclif/core';
-import { existsSync } from 'fs';
 import * as path from 'path';
 import appSource from '../utils/appSource';
-import * as clc from 'cli-color';
-import { CLIError } from '@oclif/core/lib/errors';
-import generate, { GenerationOptions } from '../utils/generate';
+import generate from '../utils/generate';
 import cwd from '../utils/cwd';
+import { GenerationOptions } from '../types/GenerationOptions.interface';
 
 export default class Generate extends Command {
 	static description = 'generates code files';
@@ -38,11 +36,24 @@ export default class Generate extends Command {
 		const { args, flags } = await this.parse(Generate);
 
 		const sharedGenerationOptions: Omit<
-			GenerationOptions,
+			Parameters<typeof generate>[0],
 			'name' | 'modification'
 		> = {
 			sourcePath: path.join(appSource(), 'res'),
 			outputPath: path.join(cwd()),
+			modify: flags.modify,
+		};
+
+		/**
+		 * Returns modification from argument,
+		 * if **-m** flag has been provided.
+		 *
+		 * @param modification
+		 */
+		const offerModification = (
+			modification: GenerationOptions['modification'],
+		) => {
+			return flags.modify ? modification : undefined;
 		};
 
 		switch (args.entityType) {
@@ -50,7 +61,7 @@ export default class Generate extends Command {
 				await generate({
 					...sharedGenerationOptions,
 					name: '.prettierrc',
-					modification: flags.modify ? {} : undefined,
+					modification: offerModification([]),
 				});
 
 				break;
