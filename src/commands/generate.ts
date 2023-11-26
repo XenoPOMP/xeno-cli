@@ -61,7 +61,7 @@ export default class Generate extends Command {
 				await generate({
 					...sharedGenerationOptions,
 					name: '.prettierrc',
-					modification: offerModification([]),
+					// modification: offerModification([]),
 				});
 
 				break;
