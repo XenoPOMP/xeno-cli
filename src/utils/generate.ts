@@ -4,19 +4,7 @@ import * as clc from 'cli-color';
 import { inquirer } from './inquirer';
 import { deleteFileSync } from './deletion';
 import { isUndefined } from '@xenopomp/advanced-utils';
-
-export interface GenerationOptions {
-	/** Name of target file. */
-	name: string;
-
-	/** Path of source directory where files has to be placed. */
-	sourcePath: string;
-	/** Path of output directory where files has to be placed. */
-	outputPath: string;
-
-	/** If _defined_, will **establish** rules of modification. */
-	modification?: {};
-}
+import { GenerationOptions } from '../types/GenerationOptions.interface';
 
 /**
  * Generates entity.
