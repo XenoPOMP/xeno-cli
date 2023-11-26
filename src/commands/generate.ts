@@ -4,7 +4,7 @@ import * as path from 'path';
 import appSource from '../utils/appSource';
 import * as clc from 'cli-color';
 import { CLIError } from '@oclif/core/lib/errors';
-import generate from '../utils/generate';
+import generate, { GenerationOptions } from '../utils/generate';
 import cwd from '../utils/cwd';
 
 export default class Generate extends Command {
@@ -37,12 +37,19 @@ export default class Generate extends Command {
 	public async run(): Promise<void> {
 		const { args, flags } = await this.parse(Generate);
 
+		const sharedGenerationOptions: Omit<
+			GenerationOptions,
+			'name' | 'modification'
+		> = {
+			sourcePath: path.join(appSource(), 'res'),
+			outputPath: path.join(cwd()),
+		};
+
 		switch (args.entityType) {
 			case 'prettier': {
 				await generate({
+					...sharedGenerationOptions,
 					name: '.prettierrc',
-					sourcePath: path.join(appSource(), 'res'),
-					outputPath: path.join(cwd()),
 					modification: flags.modify ? {} : undefined,
 				});
 

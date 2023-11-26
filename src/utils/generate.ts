@@ -5,7 +5,7 @@ import { inquirer } from './inquirer';
 import { deleteFileSync } from './deletion';
 import { isUndefined } from '@xenopomp/advanced-utils';
 
-interface GenerationOptions {
+export interface GenerationOptions {
 	/** Name of target file. */
 	name: string;
 
@@ -18,6 +18,14 @@ interface GenerationOptions {
 	modification?: {};
 }
 
+/**
+ * Generates entity.
+ *
+ * @param name
+ * @param sourcePath
+ * @param outputPath
+ * @param modification
+ */
 const generate = async ({
 	name,
 	sourcePath,
