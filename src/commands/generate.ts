@@ -29,9 +29,11 @@ export default class Generate extends Command {
 	public async run(): Promise<void> {
 		console.log(
 			`Running generation script from ${clc.bold(
-				clc.green(this.workaroundManager.curDir()),
+				clc.green(this.workaroundManager.cwd()),
 			)}\n` +
-				`Script source dir ${clc.bold.yellow(this.workaroundManager.cwd())}`,
+				`Script source dir ${clc.bold.yellow(
+					this.workaroundManager.appSource(),
+				)}`,
 		);
 	}
 }

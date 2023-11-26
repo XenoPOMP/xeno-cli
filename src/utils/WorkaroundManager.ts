@@ -1,3 +1,5 @@
+import { path } from 'app-root-path';
+
 class WorkaroundManager {
 	/**
 	 * Returns current working directory.
@@ -9,8 +11,8 @@ class WorkaroundManager {
 	/**
 	 * Returns directory of script invocation.
 	 */
-	public curDir(): string {
-		return __dirname;
+	public appSource(): string {
+		return path;
 	}
 }
 
