@@ -27,7 +27,7 @@ const generate = async ({
 }: GenerationOptions & {
 	modify?: boolean;
 }) => {
-	const FILE_CHANGE_DISABLED = true;
+	const FILE_CHANGE_DISABLED = false;
 
 	const sourceFileName = path.join(sourcePath, name);
 	const outputFileName = path.join(outputPath, name);
