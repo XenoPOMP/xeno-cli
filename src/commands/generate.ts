@@ -28,7 +28,7 @@ export default class Generate extends Command {
 	static args = {
 		entityType: Args.string({
 			required: true,
-			options: ['prettier'],
+			options: ['prettier', 'gh-npm-publish'],
 		}),
 	};
 
@@ -61,6 +61,18 @@ export default class Generate extends Command {
 				await generate({
 					...sharedGenerationOptions,
 					name: '.prettierrc',
+					// foldersToCreate: ['.github', '.github/workflows'],
+					// modification: offerModification([]),
+				});
+
+				break;
+			}
+
+			case 'gh-npm-publish': {
+				await generate({
+					sourcePath: sharedGenerationOptions.sourcePath,
+					outputPath: path.join(cwd(), '.github/workflows'),
+					name: 'npm-publish.yml',
 					foldersToCreate: ['.github', '.github/workflows'],
 					// modification: offerModification([]),
 				});
