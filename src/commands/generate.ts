@@ -61,6 +61,7 @@ export default class Generate extends Command {
 				await generate({
 					...sharedGenerationOptions,
 					name: '.prettierrc',
+					foldersToCreate: ['.github', '.github/workflows'],
 					// modification: offerModification([]),
 				});
 

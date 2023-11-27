@@ -5,6 +5,7 @@ import { inquirer } from './inquirer';
 import { deleteFileSync } from './deletion';
 import { isUndefined } from '@xenopomp/advanced-utils';
 import { GenerationOptions } from '../types/GenerationOptions.interface';
+import { createDirSync } from './creation';
 
 /**
  * Generates entity.
@@ -12,12 +13,15 @@ import { GenerationOptions } from '../types/GenerationOptions.interface';
  * @param name
  * @param sourcePath
  * @param outputPath
+ * @param foldersToCreate
  * @param modification
+ * @param modify
  */
 const generate = async ({
 	name,
 	sourcePath,
 	outputPath,
+	foldersToCreate,
 	modification,
 	modify,
 }: GenerationOptions & {
@@ -27,6 +31,18 @@ const generate = async ({
 
 	const sourceFileName = path.join(sourcePath, name);
 	const outputFileName = path.join(outputPath, name);
+
+	// Check for folders to create
+	const missingFolders = foldersToCreate?.filter(fold => {
+		const requestedPath = path.join(outputPath, fold);
+
+		return !existsSync(requestedPath);
+	});
+
+	// Create all missing folders
+	missingFolders?.forEach(fold => {
+		createDirSync(fold);
+	});
 
 	// Check if target file exists.
 	if (existsSync(outputFileName)) {
