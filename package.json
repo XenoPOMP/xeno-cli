@@ -1,7 +1,7 @@
 {
   "name": "xeno-cli",
   "version": "0.1.0",
-  "description": "Simple CLI template. Powered by oclif framework.",
+  "description": "Xeno CLI for file generation.",
   "author": "XenoPOMP",
   "bin": {
     "xeno": "./bin/run"
