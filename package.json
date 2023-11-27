@@ -1,15 +1,15 @@
 {
   "name": "xeno-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Xeno CLI for file generation.",
   "author": "XenoPOMP",
   "bin": {
     "xeno": "./bin/run"
   },
-  "homepage": "https://github.com/XenoPOMP/oclif-template",
+  "homepage": "https://xenos-organization.gitbook.io/xeno-cli",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "https://github.com/XenoPOMP/oclif-template",
+  "repository": "https://github.com/XenoPOMP/xeno-cli",
   "files": [
     "/bin",
     "/dist",
