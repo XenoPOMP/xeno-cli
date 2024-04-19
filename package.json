@@ -48,6 +48,7 @@
     "shx": "^0.3.3",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.0",
+    "type-fest": "^4.15.0",
     "typescript": "^5.0.4"
   },
   "oclif": {
