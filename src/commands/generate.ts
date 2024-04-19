@@ -28,7 +28,7 @@ export default class Generate extends Command {
 	static args = {
 		entityType: Args.string({
 			required: true,
-			options: ['prettier', 'gh-npm-publish', 'vercel'],
+			options: ['prettier', 'gh-npm-publish', 'vercel-nest'],
 		}),
 	};
 
@@ -80,7 +80,7 @@ export default class Generate extends Command {
 				break;
 			}
 
-			case 'vercel': {
+			case 'vercel-nest': {
 				await generate({
 					sourcePath: sharedGenerationOptions.sourcePath,
 					outputPath: path.join(cwd()),
