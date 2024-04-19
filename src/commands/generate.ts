@@ -28,7 +28,7 @@ export default class Generate extends Command {
 	static args = {
 		entityType: Args.string({
 			required: true,
-			options: ['prettier', 'gh-npm-publish'],
+			options: ['prettier', 'gh-npm-publish', 'vercel'],
 		}),
 	};
 
@@ -74,6 +74,18 @@ export default class Generate extends Command {
 					outputPath: path.join(cwd(), '.github/workflows'),
 					name: 'npm-publish.yml',
 					foldersToCreate: ['.github', '.github/workflows'],
+					// modification: offerModification([]),
+				});
+
+				break;
+			}
+
+			case 'vercel': {
+				await generate({
+					sourcePath: sharedGenerationOptions.sourcePath,
+					outputPath: path.join(cwd()),
+					name: 'vercel.json',
+					// foldersToCreate: ['.github', '.github/workflows'],
 					// modification: offerModification([]),
 				});
 
