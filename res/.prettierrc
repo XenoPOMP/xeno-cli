@@ -6,6 +6,8 @@
   "semi": true,
   "useTabs": false,
   "arrowParens": "avoid",
+  "singleAttributePerLine": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@/(.*)$",
